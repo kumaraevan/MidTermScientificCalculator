@@ -4,10 +4,10 @@ Data Structure and Algorithm Midterm Exam
 
 Group 2 DSA:
 
-Axel Mahadriyana Ukar
-Joshua Matthew Eliasaputra
-Kumara Evan Janottama
-Matthew Nathaniel Sutanto
+1. Axel Mahadriyana Ukar
+2. Joshua Matthew Eliasaputra
+3. Kumara Evan Janottama
+4. Matthew Nathaniel Sutanto
 
 
 Please create a scientific calculator using c++, with the rules below:
