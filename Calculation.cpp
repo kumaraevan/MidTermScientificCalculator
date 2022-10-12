@@ -20,4 +20,3 @@ void Calculation::set_next(Calculation* next)
 {
 	_next = next;
 }
-
