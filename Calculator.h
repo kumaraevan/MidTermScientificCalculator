@@ -10,23 +10,24 @@ class Calculator
 {
 	public:
 		Calculator();
-		
+
+		// Input
+		void get_operand(double &op1, double &op2);
+		void get_operand(double &op);
+		void get_operand_trig(double &op);
+				
 		// Operations
-		void getoperand(float &op1, float &op2);
-		void getoperandtrig(float &op1);
-		void getoneoperand(float &op1);
-		void add(float op1, float op2);
-		void subtract(float op1, float op2);
-		void multiply(float op1, float op2);
-		void divide(float op1, float op2);
-		void sinfunction(float op1);
-		void cosfunction(float op1);
-		void tanfunction(float op1);
-		void root(float op1);
-		void expfunction(float op1);
-		void logfunction(float op1);
-		void lnfunction(float op1);
-		
+		void add(double op1, double op2);
+		void subtract(double op1, double op2);
+		void multiply(double op1, double op2);
+		void divide(double op1, double op2);
+		void sinfunction(double op);
+		void cosfunction(double op);
+		void tanfunction(double op);
+		void root(double op);
+		void expfunction(double op);
+		void logfunction(double op);
+		void lnfunction(double op);
 		
 		// History
 		void show_history();
@@ -34,6 +35,11 @@ class Calculator
 		
 	private:
 		History* _hist;
+		double _prev_result;
+		
+		double get_input(string label);
+		double to_rad(double deg);
+		stringstream get_stream();
 	protected:
 };
 
