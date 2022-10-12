@@ -3,7 +3,7 @@
 #include "Calculator.h"
 #include "History.h"
 
-using nsamespace std;
+using namespace std;
 
 int main (int argc, char** argv, float op1, float op2)
 {
@@ -11,8 +11,9 @@ int main (int argc, char** argv, float op1, float op2)
     
     int option = 0;
     
-    //Show the menu
-    while (option !=14){
+    // Show the menu
+    while (option !=14)
+	{
           cout << "Scientific Calculator" << endl;
           cout << "------------------------" << endl << endl;
           cout << "Options" << endl;
@@ -75,7 +76,7 @@ int main (int argc, char** argv, float op1, float op2)
 			calc->root(op1);
 			break;
         case 9:
-             calc->getoperand(op1);
+             calc->getoneoperand(op1);
              calc->expfunction(op1);
              break;
         case 10:

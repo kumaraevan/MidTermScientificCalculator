@@ -8,7 +8,7 @@ Calculator::Calculator()
 	_hist = new History();
 }
 
-//Show and Clear History
+// Show and Clear History
 
 void Calculator::show_history()
 {
@@ -20,7 +20,7 @@ void Calculator::clear_history()
 	_hist->clear();
 }
 
-//Get operand(s)
+// Get operand(s)
 
 void Calculator::getoperand(float &op1, float &op2)
 {
@@ -47,7 +47,7 @@ void Calculator::getoneoperand(float &op1)
 	cout << endl;
 }
 
-//Math functions
+// Math functions
 
 void Calculator::add(float op1, float op2)
 {
