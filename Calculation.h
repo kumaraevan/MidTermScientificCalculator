@@ -1,6 +1,10 @@
 #ifndef CALCULATION_H
 #define CALCULATION_H
 
+#ifndef DEG_SYMBOL
+#define DEG_SYMBOL "°"
+#endif
+
 #include <string>
 using namespace std;
 
@@ -23,4 +27,3 @@ class Calculation
 };
 
 #endif
-
