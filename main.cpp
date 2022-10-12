@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Calculator.h"
-#include "Histort.h"
+#include "History.h"
 
 using nsamespace std;
 
