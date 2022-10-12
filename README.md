@@ -1,4 +1,4 @@
-# MidTermScientificCalculator
+# Midterm_Scientific_Calculator
 
 Data Structure and Algorithm Midterm Exam
 
