@@ -1,11 +1,17 @@
+#define _USE_MATH_DEFINES
+
 #include "Calculator.h"
 #include <cmath>
+#include <stdexcept> 
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 Calculator::Calculator()
 {
 	_hist = new History();
+	_prev_result = 0;
 }
 
 //Show and Clear History
@@ -22,171 +28,209 @@ void Calculator::clear_history()
 
 //Get operand(s)
 
-void Calculator::getoperand(float &op1, float &op2)
+void Calculator::get_operand(double &op1, double &op2)
 {
-	cout << "Please enter the first operand: ";
-	cin >> op1;
-	cout << endl;
-	cout << "Please enter the second operand: ";
-	cin >> op2;
-	cout << endl;
+	op1 = get_input("first operand");
+	op2 = get_input ("second operand");
 }
 
-
-void Calculator::getoperandtrig(float &op1)
+void Calculator::get_operand(double &op)
 {
-	cout << "Please enter the angle (Degrees): ";
-	cin >> op1;
-	op1 = op1 * M_PI / 180;
+	op = get_input("operand");
 }
 
-void Calculator::getoneoperand(float &op1)
+void Calculator::get_operand_trig(double &op)
 {
-	cout << "Please enter the operand: ";
-	cin >> op1;
-	cout << endl;
+	op = get_input("operand (in degrees)");
 }
+
 
 //Math functions
 
-void Calculator::add(float op1, float op2)
+void Calculator::add(double op1, double op2)
 {
-	float result = op1 + op2;
-	
-	cout << op1 << " + " << op2 << " = " << result << endl << endl;
+	double result = op1 + op2;
+	_prev_result = result;
 	
 	stringstream stream;
-	stream.precision(3);
-	stream << op1 << " + " << op2 << " = " << result << endl;
+	stream.precision(5);
+	stream << op1 << " + " << op2 << " = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::subtract(float op1, float op2)
+void Calculator::subtract(double op1, double op2)
 {
-	float result = op1 - op2;
-	cout << op1 << " - " << op2 << " = " << result << endl << endl;
-	
+	double result = op1 - op2;
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << op1 << " - " << op2 << " = " << result << endl;
+	stream.precision(5);
+	stream << op1 << " - " << op2 << " = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::multiply(float op1, float op2)
+void Calculator::multiply(double op1, double op2)
 {
-	float result = op1 * op2;
-	
-	cout << op1 << " * " << op2 << " = " << result << endl << endl;
-	
+	double result = op1 * op2;
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << op1 << " * " << op2 << " = " << result << endl;
+	stream.precision(5);
+	stream << op1 << " * " << op2 << " = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::divide(float op1, float op2)
+void Calculator::divide(double op1, double op2)
 {
-	float result = op1 / op2;
-	
-	cout << op1 << " / " << op2 << " = " << result << endl << endl;
-	
+	double result = op1 / op2;
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << op1 << " / " << op2 << " = " << result << endl;
+	stream.precision(5);
+	stream << op1 << " / " << op2 << " = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::sinfunction(float op1)
+void Calculator::sinfunction(double op)
 {
-	float result = sin(op1);
-	
-	cout << "Sin(" << op1 << " rad) = " << result << endl << endl;
-	
+	double result = sin(to_rad(op));
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "Sin(" << op1 << " rad) = " << result << endl;
+	stream.precision(5);
+	stream << "sin(" << op << " deg) = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::cosfunction(float op1)
+void Calculator::cosfunction(double op)
 {
-	float result = cos(op1);
-	
-	cout << "Cos(" << op1 << " rad) = " << result << endl << endl;
-	
+	double result = cos(to_rad(op));
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "Cos(" << op1 << " rad) = " << result << endl;
+	stream.precision(5);
+	stream << "cos(" << op << " deg) = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::tanfunction(float op1)
+void Calculator::tanfunction(double op)
 {
-	float result = tan(op1);
-	
-	cout << "Tan(" << op1 << " rad) = " << result << endl << endl;
-	
+	double result = tan(to_rad(op));
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "Tan(" << op1 << " rad) = " << result << endl;
+	stream.precision(5);
+	stream << "tan(" << op << " deg) = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::root(float op1)
+void Calculator::root(double op)
 {
-	float result = sqrt(op1);
-	
-	cout << "sqrt(" << op1 << ") = " << result << endl << endl;
-	
+	double result = sqrt(op);
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "sqrt(" << op1 << ") = " << result << endl;
+	stream.precision(5);
+	stream << "sqrt(" << op << ") = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::expfunction(float op1)
+void Calculator::expfunction(double op)
 {
-	float result = exp(op1);
-	
-	cout << "exp(" << op1 << ") = " << result << endl << endl;
-	
+	double result = exp(op);
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "exp(" << op1 << ") = " << result << endl;
+	stream.precision(5);
+	stream << "exp(" << op << ") = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::logfunction(float op1)
+void Calculator::logfunction(double op)
 {
-	float result = log10(op1);
-	
-	cout << "log(" << op1 << ") = " << result << endl << endl;
-	
+	double result = log10(op);
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "log(" << op1 << ") = " << result << endl;
+	stream.precision(5);
+	stream << "log(" << op << ") = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
 
-void Calculator::lnfunction(float op1)
+void Calculator::lnfunction(double op)
 {
-	float result = log(op1);
-	
-	cout << "ln(" << op1 << ") = " << result << endl << endl;
-	
+	double result = log(op);
+	_prev_result = result;
+		
 	stringstream stream;
-	stream.precision(3);
-	stream << "ln(" << op1 << ") = " << result << endl;
+	stream.precision(5);
+	stream << "ln(" << op << ") = " << result;
+	cout << stream.str() << endl;
 	
 	_hist->append(stream.str());
 }
+
+
+double Calculator::get_input(string label)
+{
+	string op;
+	
+	cout << "To use the result of previous calculation as an operand, you can type 'X'." << endl;
+	do
+	{
+		cout << "Please enter the " << label << ": ";
+		cin >> op;
+		cout << endl;
+		
+		char code = toupper(op.at(0));
+		if(code == 'X')
+		{
+			if(_hist->is_empty())
+			{
+				cout << "There is no previous calculation." << endl;
+				continue;
+			}
+			cout << "Using " << _prev_result << " as the " << label << "." << endl << endl;
+			return _prev_result;
+		}
+		else
+			try 
+			{	
+				return stod(op);
+  		    }
+			catch(const invalid_argument& err)
+			{
+        		cout << "Please enter a number or 'X' the result of previous calculation." << endl;
+		    } 
+			catch(const out_of_range& err)
+			{
+        		cout << "The number is out of range." << endl;
+    		}
+	}   while(true);
+}
+
+double Calculator::to_rad(double deg)
+{
+	return deg * M_PI / 180;
+}
+
